@@ -3,7 +3,7 @@ import SearchBar from "./components/SearchBar";
 import MovieCard from "./components/MovieCard";
 import "./App.css";
 
-const API_KEY = "YOUR_API_KEY";
+const API_KEY = "ce5d3e77";
 
 function App() {
 
