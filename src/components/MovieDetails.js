@@ -5,6 +5,8 @@ const API_KEY = "ce5d3e77";
 
 function MovieDetails() {
   const { id } = useParams();
+
+console.log("Movie ID:", id);
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
