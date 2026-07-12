@@ -146,6 +146,19 @@ h1 {
 .details-info {
   text-align: left;
 }
+.movie-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
 
 .details-info h1 {
   color: #222;
