@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 function MovieCard({ movie }) {
   return (
-    <Link
-      to={`/movie/${movie.imdbID}`}
+    <Link 
+      to={`/movie/${movie.imdbID}`} 
       className="movie-link"
     >
       <div className="card">
@@ -18,16 +18,9 @@ function MovieCard({ movie }) {
           alt={movie.Title}
         />
 
-        <div className="info">
+        <div className="card-content">
           <h2>{movie.Title}</h2>
-
-          <p>📅 {movie.Year}</p>
-
-          <p>🎬 {movie.Type}</p>
-
-          <button className="details-btn">
-            View Details
-          </button>
+          <p>{movie.Year}</p>
         </div>
 
       </div>
