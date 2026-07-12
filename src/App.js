@@ -1,41 +1,48 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import SearchBar from "./components/SearchBar";
 import MovieCard from "./components/MovieCard";
+import MovieDetails from "./components/MovieDetails";
 import "./App.css";
 
 const API_KEY = "ce5d3e77";
 
-function App() {
-
+// Home Page
+function Home() {
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState("Batman");
 
   useEffect(() => {
-    fetchMovies(search);
+    fetchMovies("Batman");
   }, []);
 
   const fetchMovies = async (movie) => {
+    try {
+      const response = await fetch(
+        `https://www.omdbapi.com/?apikey=${API_KEY}&s=${movie}`
+      );
 
-    const response = await fetch(
-      `https://www.omdbapi.com/?apikey=${API_KEY}&s=${movie}`
-    );
+      const data = await response.json();
 
-    const data = await response.json();
-
-    if (data.Search) {
-      setMovies(data.Search);
-    } else {
-      setMovies([]);
+      if (data.Response === "True") {
+        setMovies(data.Search);
+      } else {
+        setMovies([]);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
   const searchMovie = () => {
-    fetchMovies(search);
+    if (search.trim() !== "") {
+      fetchMovies(search);
+    }
   };
 
   return (
     <div className="App">
-
       <h1>🎬 Movie Search Library</h1>
 
       <SearchBar
@@ -45,7 +52,6 @@ function App() {
       />
 
       <div className="movie-container">
-
         {movies.length > 0 ? (
           movies.map((movie) => (
             <MovieCard
@@ -54,12 +60,22 @@ function App() {
             />
           ))
         ) : (
-          <h2>No Movies Found</h2>
+          <h2 className="no-movie">No Movies Found</h2>
         )}
-
       </div>
-
     </div>
+  );
+}
+
+// Main App
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/movie/:id" element={<MovieDetails />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
