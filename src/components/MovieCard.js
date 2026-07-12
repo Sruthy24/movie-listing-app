@@ -6,9 +6,9 @@ function MovieCard({ movie }) {
   const navigate = useNavigate();
 
   function openDetails() {
-    console.log(movie.imdbID);
-    navigate(`/movie/${movie.imdbID}`);
-  }
+  console.log("Clicked:", movie.imdbID);
+  navigate(`/movie/${movie.imdbID}`);
+}
 
   return (
     <div className="card" onClick={openDetails}>
