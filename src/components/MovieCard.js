@@ -1,30 +1,29 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function MovieCard({ movie }) {
+
+  const navigate = useNavigate();
+
   return (
-    <Link 
-      to={`/movie/${movie.imdbID}`} 
-      className="movie-link"
+    <div 
+      className="card"
+      onClick={() => navigate(`/movie/${movie.imdbID}`)}
     >
-      <div className="card">
 
-        <img
-          src={
-            movie.Poster !== "N/A"
-              ? movie.Poster
-              : "https://via.placeholder.com/300x450"
-          }
-          alt={movie.Title}
-        />
+      <img
+        src={
+          movie.Poster !== "N/A"
+            ? movie.Poster
+            : "https://via.placeholder.com/300x450"
+        }
+        alt={movie.Title}
+      />
 
-        <div className="card-content">
-          <h2>{movie.Title}</h2>
-          <p>{movie.Year}</p>
-        </div>
+      <h2>{movie.Title}</h2>
+      <p>{movie.Year}</p>
 
-      </div>
-    </Link>
+    </div>
   );
 }
 
