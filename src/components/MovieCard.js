@@ -1,28 +1,37 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function MovieCard({ movie }) {
-
-  const handleClick = () => {
-    alert(movie.imdbID);
-  };
-
   return (
-    <div 
-      className="card"
-      onClick={handleClick}
-      style={{ cursor: "pointer" }}
+    <Link
+      to={`/movie/${movie.imdbID}`}
+      className="movie-link"
     >
+      <div className="card">
 
-      <img
-        src={movie.Poster}
-        alt={movie.Title}
-      />
+        <img
+          src={
+            movie.Poster !== "N/A"
+              ? movie.Poster
+              : "https://via.placeholder.com/300x450"
+          }
+          alt={movie.Title}
+        />
 
-      <h2>{movie.Title}</h2>
+        <div className="info">
+          <h2>{movie.Title}</h2>
 
-      <p>{movie.Year}</p>
+          <p>📅 {movie.Year}</p>
 
-    </div>
+          <p>🎬 {movie.Type}</p>
+
+          <button className="details-btn">
+            View Details
+          </button>
+        </div>
+
+      </div>
+    </Link>
   );
 }
 
